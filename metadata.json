@@ -1,0 +1,6 @@
+{
+  "name": "Elizabeth Signature Gallery",
+  "description": "Premium flower bouquet e-commerce platform with automated payment gateways, order tracking, real-time analytics, protected 2FA admin panel, and automatic email notifications.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
