@@ -97,41 +97,47 @@ export default function AdminLogin2FA({
     setError("");
   };
 
+  const handleQuickDemoFill = () => {
+    setUsername("admin");
+    setPassword("elizabethgallery123");
+    setError("");
+  };
+
   return (
     <div
-      className="min-h-screen bg-slate-950 flex flex-col items-center justify-center p-4 relative overflow-hidden"
+      className="min-h-screen bg-slate-950 flex flex-col items-center justify-center p-3 sm:p-4 relative overflow-hidden"
       id="admin-login-screen"
     >
       {/* Absolute Decorative Circles */}
-      <div className="absolute top-[-10%] left-[-10%] w-96 h-96 rounded-full bg-indigo-900/10 blur-3xl"></div>
-      <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 rounded-full bg-amber-900/10 blur-3xl"></div>
+      <div className="absolute top-[-10%] left-[-10%] w-96 h-96 rounded-full bg-indigo-900/10 blur-3xl pointer-events-none"></div>
+      <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 rounded-full bg-amber-900/10 blur-3xl pointer-events-none"></div>
 
-      <div className="w-full max-w-4xl bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row my-auto max-h-[92vh] overflow-y-auto">
-        {/* Left Side: Brand presentation */}
-        <div className="md:w-1/2 bg-[#0B132B] p-5 sm:p-8 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-slate-800 text-center space-y-3 sm:space-y-4 shrink-0">
+      <div className="w-full max-w-4xl bg-slate-900 border border-slate-800 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row my-auto max-h-[92vh] overflow-y-auto">
+        {/* Left Side: Brand presentation (Compact on mobile) */}
+        <div className="md:w-1/2 bg-[#0B132B] p-4 sm:p-8 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-slate-800 text-center space-y-2 sm:space-y-4 shrink-0">
           <Logo size="lg" showDetails={false} />
-          <div className="space-y-1.5">
-            <h3 className="text-amber-400 font-serif text-lg sm:text-xl italic font-bold">
+          <div className="space-y-1">
+            <h3 className="text-amber-400 font-serif text-base sm:text-xl italic font-bold">
               Portal Administrasi Toko
             </h3>
-            <p className="text-xs text-slate-400 px-4 sm:px-6 max-w-xs mx-auto leading-relaxed">
+            <p className="text-xs text-slate-400 px-2 sm:px-6 max-w-xs mx-auto leading-relaxed hidden sm:block">
               Selamat datang di sistem manajemen penjualan Elizabeth Signature
-              Gallery. Lindungi akses dengan kredensial & otentikasi lapis
-              ganda.
+              Gallery.
             </p>
           </div>
           <button
+            type="button"
             onClick={onBackToStore}
-            className="text-xs text-slate-400 hover:text-white hover:bg-slate-800 border border-slate-800 px-4 py-2.5 rounded-xl transition duration-200 mt-2 sm:mt-4 cursor-pointer min-h-[44px] flex items-center justify-center"
+            className="text-xs text-slate-400 hover:text-white hover:bg-slate-800 border border-slate-800 px-3 py-1.5 sm:py-2.5 rounded-xl transition duration-200 mt-1 sm:mt-4 cursor-pointer min-h-[40px] sm:min-h-[44px] flex items-center justify-center active:scale-95"
           >
             ← Kembali ke Toko Bunga
           </button>
         </div>
 
         {/* Right Side: Step forms */}
-        <div className="md:w-1/2 p-5 sm:p-8 flex flex-col justify-center bg-slate-900 text-white shrink-0">
+        <div className="md:w-1/2 p-4 sm:p-8 flex flex-col justify-center bg-slate-900 text-white shrink-0">
           {step === "CREDENTIALS" ? (
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               <div className="space-y-1">
                 <div className="flex items-center gap-2 text-amber-500">
                   <ShieldAlert size={18} />
@@ -139,7 +145,7 @@ export default function AdminLogin2FA({
                     Akses Terproteksi
                   </span>
                 </div>
-                <h2 className="text-2xl font-bold font-serif tracking-tight text-white">
+                <h2 className="text-xl sm:text-2xl font-bold font-serif tracking-tight text-white">
                   Login Administrator
                 </h2>
                 <p className="text-xs text-slate-400">
@@ -147,22 +153,25 @@ export default function AdminLogin2FA({
                 </p>
               </div>
 
-              <form onSubmit={handleCredentialsSubmit} className="space-y-4">
+              <form
+                onSubmit={handleCredentialsSubmit}
+                className="space-y-3.5 sm:space-y-4"
+              >
                 <div className="space-y-1.5">
                   <label className="text-xs text-slate-400 font-semibold uppercase tracking-wider">
                     Username
                   </label>
                   <div className="relative">
                     <User
-                      className="absolute left-3.5 top-3 text-slate-500"
-                      size={16}
+                      className="absolute left-3.5 top-3.5 text-slate-500"
+                      size={18}
                     />
                     <input
                       type="text"
                       required
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
-                      className="w-full bg-slate-950 border border-slate-800 rounded-xl py-2.5 pl-10 pr-4 text-sm focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 text-slate-200"
+                      className="w-full bg-slate-950 border border-slate-800 rounded-xl py-3 pl-11 pr-4 text-sm focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 text-slate-200 min-h-[48px]"
                       placeholder="Username admin"
                     />
                   </div>
@@ -174,23 +183,23 @@ export default function AdminLogin2FA({
                   </label>
                   <div className="relative">
                     <Key
-                      className="absolute left-3.5 top-3 text-slate-500"
-                      size={16}
+                      className="absolute left-3.5 top-3.5 text-slate-500"
+                      size={18}
                     />
                     <input
                       type={showPassword ? "text" : "password"}
                       required
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      className="w-full bg-slate-950 border border-slate-800 rounded-xl py-2.5 pl-10 pr-10 text-sm focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 text-slate-200"
+                      className="w-full bg-slate-950 border border-slate-800 rounded-xl py-3 pl-11 pr-11 text-sm focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 text-slate-200 min-h-[48px]"
                       placeholder="••••••••••••"
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-3 text-slate-500 hover:text-slate-300"
+                      className="absolute right-3.5 top-3 text-slate-500 hover:text-slate-300 min-h-[40px] flex items-center px-1"
                     >
-                      {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                      {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                     </button>
                   </div>
                 </div>
@@ -208,29 +217,33 @@ export default function AdminLogin2FA({
                   </div>
                 )}
 
-                {/* Helper info block for demo */}
-                <div className="p-3 bg-slate-950 rounded-xl border border-slate-800/80 text-[11px] text-slate-500 space-y-1 leading-normal">
-                  <p className="font-bold text-slate-400 uppercase tracking-widest text-[10px]">
-                    💡 Akun Demo default:
-                  </p>
-                  <p>
-                    Username: <strong className="text-slate-300">admin</strong>
-                  </p>
-                  <p>
-                    Password:{" "}
-                    <strong className="text-slate-300">
-                      elizabethgallery123
-                    </strong>
-                  </p>
+                {/* Helper info block for demo with Quick 1-Tap Fill Button */}
+                <div className="p-3 bg-slate-950 rounded-xl border border-slate-800/80 text-[11px] text-slate-500 space-y-2 leading-normal flex items-center justify-between gap-2">
+                  <div className="space-y-0.5">
+                    <p className="font-bold text-slate-400 uppercase tracking-widest text-[10px]">
+                      💡 Akun Demo:
+                    </p>
+                    <p className="text-slate-300">
+                      Username: <strong>admin</strong> | Password:{" "}
+                      <strong>elizabethgallery123</strong>
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleQuickDemoFill}
+                    className="shrink-0 bg-amber-950/80 hover:bg-amber-900 border border-amber-800/80 text-amber-300 text-[11px] font-bold py-1.5 px-2.5 rounded-lg cursor-pointer transition active:scale-95"
+                  >
+                    ⚡ Isi Otomatis
+                  </button>
                 </div>
 
                 <button
                   type="submit"
                   disabled={success}
-                  className="w-full bg-amber-500 hover:bg-amber-600 active:scale-98 text-slate-950 font-extrabold py-3 px-4 rounded-xl transition duration-200 shadow-md flex items-center justify-center gap-2 cursor-pointer mt-4"
+                  className="w-full bg-amber-500 hover:bg-amber-600 active:scale-95 text-slate-950 font-extrabold py-3.5 px-4 rounded-xl transition duration-200 shadow-md flex items-center justify-center gap-2 cursor-pointer mt-4 min-h-[48px] touch-manipulation"
                 >
                   <span>Masuk ke Dashboard Admin</span>
-                  <ArrowRight size={16} />
+                  <ArrowRight size={18} />
                 </button>
               </form>
             </div>
